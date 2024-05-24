@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Livewire\Categories\Create;
+use App\Livewire\Categories\Index;
+use App\Livewire\Categories\Update;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -15,6 +18,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::get('/category', Index::class)->name('category.index');
+    Route::get('/category/create', Create::class)->name('category.create');
+    Route::get('/category/{category}/edit', Update::class)->name('category.update');
 });
 
 require __DIR__.'/auth.php';
